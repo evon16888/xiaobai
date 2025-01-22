@@ -56,4 +56,3 @@ echo "Anaconda、PM2、谷歌和 Python 环境安装完成，且安装了 xbx-py
 
 # 启动新的交互式 shell，保持在虚拟环境中
 exec $SHELL
-exit
