@@ -55,6 +55,13 @@ sudo apt --fix-broken install -y
 # 验证谷歌
 google-chrome --version
 
+# 设置8G虚拟内存
+sudo fallocate -l 8G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
 # 解决中文乱码
 echo "开始安装字体"
 cd /usr/share/fonts/
