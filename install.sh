@@ -39,6 +39,10 @@ python --version
 echo "安装 xbx-py11 库..."
 pip install xbx-py11
 
+# 安装Htop
+echo "安装 Htop..."
+sudo apt install htop
+
 # 安装谷歌
 echo "安装谷歌..."
 # 更新环境
@@ -50,6 +54,16 @@ sudo dpkg -i google-chrome-stable_current_amd64.deb
 sudo apt --fix-broken install -y
 # 验证谷歌
 google-chrome --version
+
+# 解决中文乱码
+echo "开始安装字体"
+cd /usr/share/fonts/
+sudo wget https://github.com/adobe-fonts/source-han-sans/releases/download/2.004R/SourceHanSansSC.zip
+sudo apt install unzip
+sudo unzip SourceHanSansSC.zip
+sudo mv OTF/ SourceHanSans/
+sudo fc-cache –fv
+rm -rf ~/.cache/matplotlib
 
 # 完成
 echo "Anaconda、PM2、谷歌和 Python 环境安装完成，且安装了 xbx-py11 库。"
