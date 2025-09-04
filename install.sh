@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 安装 Anaconda
-echo "开始安装 Anaconda..."
+echo "开始安装 miniconda3..."
 # 创建miniconda3存储的文件夹
 mkdir -p ~/miniconda3
 # 下载 Anaconda 安装脚本
@@ -87,7 +87,7 @@ sudo fc-cache –fv
 rm -rf ~/.cache/matplotlib
 
 # 完成
-echo "Anaconda、PM2、谷歌和 Python 环境安装完成，且安装了 xbx-py11 库。"
+echo "miniconda3更节省硬盘空间、PM2、PM2日志管理工具、SourceHanSansSC字体、设置虚拟8G虚拟内存、Htop内存和CPU查看工具、谷歌浏览器和 Python 环境安装完成，且安装了 xbx-py11 库。"
 
 # 启动新的交互式 shell，保持在虚拟环境中
 exec $SHELL
