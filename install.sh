@@ -28,6 +28,8 @@ echo "开始安装 PM2..."
 sudo apt install -y nodejs npm
 # 安装 PM2
 sudo npm install -g pm2
+# 安装 PM2 日志管理工具
+pm2 install pm2-logrotate
 # 验证 PM2 安装
 pm2 --version
 
