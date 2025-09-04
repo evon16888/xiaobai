@@ -2,20 +2,29 @@
 
 # 安装 Anaconda
 echo "开始安装 Anaconda..."
+# 创建miniconda3存储的文件夹
+mkdir -p ~/miniconda3
 # 下载 Anaconda 安装脚本
-wget https://repo.anaconda.com/archive/Anaconda3-2024.06-1-Linux-x86_64.sh -O ~/anaconda_installer.sh
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda3/miniconda.sh
 # 运行安装脚本
-bash ~/anaconda_installer.sh -b -p $HOME/anaconda3
-# 将 Anaconda 添加到 PATH
-echo 'export PATH="$HOME/anaconda3/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
+bash ~/miniconda3/miniconda.sh -b -u -p ~/miniconda3
+# 删除安装脚本
+rm ~/miniconda3/miniconda.sh
+# 激活base环境
+source ~/miniconda3/bin/activate
+# 初始化
+conda init --all
+# 配置channel
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main
+conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 # 验证 Anaconda 安装
 conda --version
 
 # 安装 PM2
 echo "开始安装 PM2..."
+# 更新环境
+sudo apt update && sudo apt upgrade -y
 # 安装 Node.js（PM2 依赖 Node.js）
-sudo apt update
 sudo apt install -y nodejs npm
 # 安装 PM2
 sudo npm install -g pm2
@@ -24,10 +33,6 @@ pm2 --version
 
 # 创建 Python 3.11 的 Alpha 环境
 echo "创建 Python 3.11 的 Alpha 环境..."
-# 切换进Anaconda3的目录中
-cd anaconda3
-# 激活base环境
-source bin/activate
 # 创建新的环境
 conda create -n Alpha python=3.11 -y
 # 激活环境
@@ -45,17 +50,24 @@ sudo apt install htop
 
 # 安装谷歌
 echo "安装谷歌..."
-# 更新环境
-sudo apt update && sudo apt upgrade -y
 # 下载谷歌
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb -O ~/google-chrome-stable_current_amd64.deb
 # 安装谷歌
-sudo dpkg -i google-chrome-stable_current_amd64.deb
+sudo dpkg -i ~/google-chrome-stable_current_amd64.deb
 sudo apt --fix-broken install -y
+# 删除安装包
+rm ~/google-chrome-stable_current_amd64.deb
 # 验证谷歌
 google-chrome --version
 
-# 设置8G虚拟内存
+# 检查是否存在虚拟内存，Ubuntu 24.04.2 这个版本默认启用了 2G 的虚拟内存
+if [ -f "/swap.img" ]; then
+    # 停用旧的Swap
+    sudo swapoff /swap.img
+    # 删除原swap文件
+    sudo rm /swap.img
+fi
+# 开始设置虚拟内存
 sudo fallocate -l 8G /swapfile
 sudo chmod 600 /swapfile
 sudo mkswap /swapfile
