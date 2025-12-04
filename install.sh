@@ -23,7 +23,8 @@ conda --version
 # 安装 PM2
 echo "开始安装 PM2..."
 # 更新环境
-# sudo apt update && sudo apt upgrade -y
+sudo apt --fix-broken install
+sudo apt update && sudo apt upgrade -y
 # 安装 Node.js（PM2 依赖 Node.js）
 sudo apt install -y nodejs npm
 # 安装 PM2
