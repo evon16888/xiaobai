@@ -20,17 +20,21 @@ conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 # 验证 Anaconda 安装
 conda --version
 
-# 安装 PM2
+# 设置非交互式环境变量，防止 apt 升级时弹窗选择语言、时区或确认服务
+export DEBIAN_FRONTEND=noninteractive
 echo "开始安装 PM2..."
-# 更新环境
-sudo apt --fix-broken install
+# 修复损坏的依赖
+sudo apt --fix-broken install -y
+# 非交互式更新系统
 sudo apt update && sudo apt upgrade -y
-# 安装 Node.js（PM2 依赖 Node.js）
+# 安装 Node.js 和 npm
 sudo apt install -y nodejs npm
-# 安装 PM2
+# 全局安装 PM2
 sudo npm install -g pm2
+
 # 安装 PM2 日志管理工具
 pm2 install pm2-logrotate
+
 # 验证 PM2 安装
 pm2 --version
 
@@ -127,16 +131,6 @@ sudo chmod 600 /swapfile
 sudo mkswap /swapfile
 sudo swapon /swapfile
 echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-
-# 解决中文乱码
-echo "开始安装字体"
-cd /usr/share/fonts/
-sudo wget https://github.com/adobe-fonts/source-han-sans/releases/download/2.004R/SourceHanSansSC.zip
-sudo apt install unzip -y
-sudo unzip SourceHanSansSC.zip
-sudo mv OTF/ SourceHanSans/
-sudo fc-cache –fv
-rm -rf ~/.cache/matplotlib
 
 # 完成
 echo "miniconda3更节省硬盘空间、PM2、PM2日志管理工具、SourceHanSansSC字体、设置虚拟8G虚拟内存、Htop内存和CPU查看工具、MySQL及自动初始化、 Python 环境安装完成！"
