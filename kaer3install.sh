@@ -59,7 +59,7 @@ sudo apt-get install -y htop
 echo "[+] 开始安装与配置 MySQL..."
 DB_NAME="alpha"
 DB_USER="work"
-DB_PASS="你的实际密码"   # 请修改为您的 MySQL 密码
+DB_PASS="Www.top123@"   # 请修改为您的 MySQL 密码
 INIT_SQL_URL="https://raw.githubusercontent.com/evon16888/xiaobai/refs/heads/main/init.sql" # 确保这里是你的 init.sql 真实 Raw 链接
 INIT_SQL_PATH="./init.sql"
 
