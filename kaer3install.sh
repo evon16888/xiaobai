@@ -22,6 +22,7 @@ conda --version
 
 # 安装 PM2
 echo "开始安装 PM2..."
+export DEBIAN_FRONTEND=noninteractive
 # 更新环境
 sudo apt --fix-broken install
 sudo apt update && sudo apt upgrade -y
