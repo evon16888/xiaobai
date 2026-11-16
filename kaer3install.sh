@@ -6,6 +6,14 @@
 export DEBIAN_FRONTEND=noninteractive
 export NEEDRESTART_MODE=a
 
+# 核心：提前静默预设键盘和时区，彻底杜绝 debconf 弹窗
+echo "keyboard-configuration keyboard-configuration/layout select English (US)" | sudo debconf-set-selections
+echo "keyboard-configuration keyboard-configuration/layoutcode select us" | sudo debconf-set-selections
+echo "tzdata tzdata/Areas select Asia" | sudo debconf-set-selections
+echo "tzdata tzdata/Zones/Asia select Shanghai" | sudo debconf-set-selections
+
+# 之后的安装命令就可以畅通无阻了...
+
 # 1. 安装 Anaconda
 echo "开始安装 miniconda3..."
 mkdir -p ~/miniconda3
