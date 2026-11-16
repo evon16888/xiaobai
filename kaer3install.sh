@@ -23,6 +23,13 @@ conda --version
 # 安装 PM2
 echo "开始安装 PM2..."
 export DEBIAN_FRONTEND=noninteractive
+
+# 终极静默安装命令（加了 dpkg 强制默认参数）
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    -o Dpkg::Options::="--force-confdef" \
+    -o Dpkg::Options::="--force-confold" \
+    nodejs npm
+
 # 更新环境
 sudo apt --fix-broken install
 sudo apt update && sudo apt upgrade -y
