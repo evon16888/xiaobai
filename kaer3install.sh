@@ -26,7 +26,10 @@ echo "开始安装 PM2..."
 # 修复损坏的依赖
 sudo apt --fix-broken install -y
 # 非交互式更新系统
-sudo apt update && sudo apt upgrade -y
+sudo DEBIAN_FRONTEND=noninteractive apt-get -y \
+  -o Dpkg::Options::="--force-confdef" \
+  -o Dpkg::Options::="--force-confold" \
+  upgrade
 # 安装 Node.js 和 npm
 sudo apt install -y nodejs npm
 # 全局安装 PM2
