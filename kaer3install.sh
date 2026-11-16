@@ -25,6 +25,9 @@ export DEBIAN_FRONTEND=noninteractive
 echo "开始安装 PM2..."
 # 修复损坏的依赖
 sudo apt --fix-broken install -y
+
+# 更新软件包列表
+sudo apt update
 # 非交互式更新系统
 sudo DEBIAN_FRONTEND=noninteractive apt-get -y \
   -o Dpkg::Options::="--force-confdef" \
